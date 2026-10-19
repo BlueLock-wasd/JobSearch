@@ -1,9 +1,6 @@
 from fastapi import FastAPI, Request
-from urllib3 import request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-
-from models import User
 
 app = FastAPI()
 
