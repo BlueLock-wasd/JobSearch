@@ -15,7 +15,8 @@ class DBSettings(BaseSettings):
 DBS = DBSettings()
 
 engine = create_async_engine(DBS.db_url, echo=True)
-async_session = async_sessionmaker(engine)
+async_session = async_sessionmaker(engine, expire_on_commit=False)
 
 async def get_db():
-    pass # найти в документации и доделать функцию
+    async with async_session() as session:
+        yield session
