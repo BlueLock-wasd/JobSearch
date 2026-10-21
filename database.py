@@ -1,6 +1,5 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
-from sqlmodel import SQLModel
 from pydantic import Field
 
 
@@ -22,5 +21,9 @@ async def get_db():
     async with async_session() as session:
         yield session
 
+def create_db_and_tables():
+    SQLModel.metadata.create_all(engine)
 
-SQLModel.metadata.create_all(engine)
+
+if __name__ == '__main__':
+    create_db_and_tables()

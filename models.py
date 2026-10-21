@@ -13,9 +13,10 @@ class User(SQLModel, table=True):
         default=None,
         sa_column=Column(BigInteger, primary_key=True)
     )
-    username: str | None = Field(unique=True)
+    username: str = Field(unique=True)
     password_hash: str
     created_at: datetime = Field(default_factory=get_datetime)
+
 
 
 
